@@ -31,7 +31,7 @@ function SignUp() {
     const handleSignUp = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:5000/signup", {
+        const response = await fetch("http://localhost:5000/auth/signup", {
             method: "POST",
             body: JSON.stringify({ name, email, password }),
             headers: { "Content-Type": "application/json" },

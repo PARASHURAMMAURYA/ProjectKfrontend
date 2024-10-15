@@ -10,7 +10,7 @@ import NavSrinc from "./Components/NavSrinc";
 function App() {
   return (
     <BrowserRouter>
-      <Nav />
+      <Nav/>
       <Routes>
         <Route element={<PrivateComponent />}>
           <Route path="/" element={<h1>HOME</h1>}></Route>

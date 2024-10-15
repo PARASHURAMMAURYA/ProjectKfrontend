@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Profile from "./Profile";
 import { Avatar } from "@mui/material";
-import K from '../assets/—Pngtree—k logo design_6108925.png'
 
 interface User {
   name: string;
@@ -11,9 +10,13 @@ interface User {
 }
 
 const Nav: React.FC = () => {
+  const navigate = useNavigate();
   const auth = localStorage.getItem("user");
 
-
+  const Logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -23,7 +26,8 @@ const Nav: React.FC = () => {
 
   if (userData) {
     const user: User = JSON.parse(userData);
-    console.log(user)
+   console.log(user)
+  }
   return (
     <nav className="border-gray-200  dark:border-gray-700 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -31,15 +35,14 @@ const Nav: React.FC = () => {
           {/* <img src={'munna'} className="h-16 rounded-full" alt="Flowbite Logo" /> */}
           <span onClick={toggleProfile}>
             <NavLink to={profileOpen ? "/profilecard" : "/"}>
-                {!userData?<Profile />  :<Avatar
-                        src={user.profilePic}
+            {!userData?<Profile />  :<Avatar
+                        //src={user.profilePic}
                         title="Profile"
                         sx={{ width: 40, height:40 }}
-                      ></Avatar>} 
-            </NavLink>
+                      ></Avatar>}             </NavLink>
           </span>
-          <span className="flex self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Project-<img src={K} alt="K" className="h-8 w-8 mt-1 -ml-1"/>
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            Project-K
           </span>
         </div>
         <div
@@ -166,5 +169,6 @@ const Nav: React.FC = () => {
     </nav>
   );
 }
-}
+
+
 export default Nav;
